@@ -7,9 +7,9 @@ const Page404 = () => {
     <main className={`${styles.page404}`}>
       <p>Page not found</p>
       <p>
-        {'Вернуться  на домашнюю страницу '}
+        {'Back to '}
         <Link className={styles.link} to="/">
-          Go home page
+          main page
         </Link>
       </p>
     </main>
