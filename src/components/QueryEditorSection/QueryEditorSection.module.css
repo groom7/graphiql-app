@@ -1,0 +1,24 @@
+.queryEditorSection {
+  max-height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+  display: grid;
+  padding: 8px;
+}
+.queryEditorSection__form {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+.queryEditorSection__queryEditorArea {
+  height: 100%;
+  font-size: 14px;
+  border-radius: 1rem;
+  transition: all 0.25s;
+}
+.queryEditorSection__submitButton {
+  background-color: #646cff;
+}
+.queryEditorSection__queryEditorArea:hover {
+  background-color: #f2f4fa;
+}

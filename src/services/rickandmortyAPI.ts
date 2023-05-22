@@ -1,17 +1,46 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getIntrospectionQuery, IntrospectionQuery } from 'graphql';
-import { graphqlRequestBaseQuery } from '@rtk-query/graphql-request-base-query';
 import graphqlServerBaseURL from '../utils/apiConstants';
 
 export const rickandmortyAPI = createApi({
-  baseQuery: graphqlRequestBaseQuery({ url: graphqlServerBaseURL }),
+  baseQuery: fetchBaseQuery({ baseUrl: graphqlServerBaseURL }),
   endpoints: (build) => ({
     getGraphQLIntrospection: build.query<IntrospectionQuery, void>({
       query: () => ({
-        document: getIntrospectionQuery(),
+        url: '',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: {
+          query: getIntrospectionQuery(),
+        },
       }),
+      transformResponse: ({ data }: { data: IntrospectionQuery }) => data,
+    }),
+    // getGraphQLData: build.mutation({
+    //   query: (payload) => ({
+    //     url: '',
+    //     method: 'POST',
+    //     body: { query: payload },
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //   }),
+    //   transformResponse: ({ data }) => JSON.stringify(data, null, 2),
+    // }),
+    getGraphQLData: build.query({
+      query: (payload) => ({
+        url: '',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: { query: payload },
+      }),
+      transformResponse: ({ data }) => JSON.stringify(data, null, 2),
     }),
   }),
 });
 
-export const { useGetGraphQLIntrospectionQuery } = rickandmortyAPI;
+export const { useGetGraphQLIntrospectionQuery, useLazyGetGraphQLDataQuery } = rickandmortyAPI;

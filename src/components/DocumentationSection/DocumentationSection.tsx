@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect } from 'react';
 import CodeEditor from '@uiw/react-textarea-code-editor';
 import { toast } from 'react-toastify';
@@ -39,7 +38,7 @@ const DocumentationSection = () => {
   if (isSuccess)
     content = (
       <section className={styles.documentaionSection}>
-        <h1>Docs</h1>
+        <h2>Docs</h2>
         <CodeEditor
           value={introspectionToString(graphQLIntrospection)}
           language="graphql"
