@@ -1,9 +1,10 @@
 .documentaionSection {
-  max-height: 100%;
+  height: 100%;
   overflow-y: auto;
   padding: 16px;
 }
 .documentaionSection__textArea {
+  max-height: 100%;
   background-color: transparent;
   font-size: 14px;
 }
