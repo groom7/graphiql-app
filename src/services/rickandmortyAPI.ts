@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getIntrospectionQuery, IntrospectionQuery } from 'graphql';
-import graphqlServerBaseURL from '../utils/apiConstants';
+import { graphqlServerBaseURL } from '../utils/constants';
 
 export const rickandmortyAPI = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: graphqlServerBaseURL }),
@@ -29,17 +29,6 @@ export const rickandmortyAPI = createApi({
       }),
       transformResponse: ({ data }) => JSON.stringify(data, null, 2),
     }),
-    // getGraphQLData: build.query({
-    //   query: (payload) => ({
-    //     url: '',
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: { query: payload },
-    //   }),
-    //   transformResponse: ({ data }) => JSON.stringify(data, null, 2),
-    // }),
   }),
 });
 

@@ -19,8 +19,6 @@ const DocumentationSection = () => {
 
   useEffect(() => {
     if (isError) {
-      // eslint-disable-next-line no-console
-      console.error(error);
       if (error instanceof Error) {
         toast.error(error.message);
       } else {

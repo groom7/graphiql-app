@@ -24,8 +24,6 @@ const QueryEditorSection = () => {
 
   useEffect(() => {
     if (isError) {
-      // eslint-disable-next-line no-console
-      console.error(error);
       if (error instanceof Error) {
         toast.error(error.message);
       }
@@ -51,7 +49,7 @@ const QueryEditorSection = () => {
   return (
     <section className={styles.queryEditorSection}>
       <form className={styles.queryEditorSection__form} onSubmit={(event) => handleSubmit(event)}>
-        <button className={styles.submitButton} type="submit">
+        <button className="submitButton" type="submit">
           Query
         </button>
         <CodeEditor

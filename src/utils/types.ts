@@ -1,3 +1,5 @@
+import { User } from '@firebase/auth-types';
+
 export interface IResponseError {
   data?: {
     errors?: [
@@ -7,4 +9,8 @@ export interface IResponseError {
     ];
   };
   status?: number;
+}
+
+export interface IUserWithAccessToken extends User {
+  accessToken: string;
 }
