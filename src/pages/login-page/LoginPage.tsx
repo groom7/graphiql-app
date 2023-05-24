@@ -48,59 +48,61 @@ const LoginPage = () => {
   }
 
   return (
-    <form className="authForm" onSubmit={handleSubmit(onSubmit)}>
-      <h1>Sign in</h1>
-      <label className="email" htmlFor="email">
-        Email:
-        <input
-          id="email"
-          {...register('email', {
-            required: 'Email address is required',
-            pattern: {
-              value: emailPattern,
-              message:
-                'Entered value does not match email format, minimum 8 symbols, at least one letter, one digit, one special character',
-            },
-          })}
-          placeholder="Email"
-          type="email"
-        />
-      </label>
-      {errors?.email?.message && (
-        <span className="field-error-text">{errors?.email?.message as string}</span>
-      )}
+    <main className="main">
+      <form className="authForm" onSubmit={handleSubmit(onSubmit)}>
+        <h1>Sign in</h1>
+        <label className="email" htmlFor="email">
+          Email:
+          <input
+            id="email"
+            {...register('email', {
+              required: 'Email address is required',
+              pattern: {
+                value: emailPattern,
+                message:
+                  'Entered value does not match email format, minimum 8 symbols, at least one letter, one digit, one special character',
+              },
+            })}
+            placeholder="Email"
+            type="email"
+          />
+        </label>
+        {errors?.email?.message && (
+          <span className="field-error-text">{errors?.email?.message as string}</span>
+        )}
 
-      <label className="email" htmlFor="password">
-        Password:
-        <input
-          id="password"
-          {...register('password', {
-            required: 'Password is required',
-            pattern: {
-              value: passwordPattern,
-              message: 'minimum 8 symbols, at least one letter, one digit, one special character',
-            },
-            minLength: {
-              value: 8,
-              message: 'min length is 8',
-            },
-          })}
-          type="password"
-          placeholder="Password"
-        />
-      </label>
-      {errors?.password?.message && (
-        <span className="field-error-text">{errors?.password?.message as string}</span>
-      )}
+        <label className="email" htmlFor="password">
+          Password:
+          <input
+            id="password"
+            {...register('password', {
+              required: 'Password is required',
+              pattern: {
+                value: passwordPattern,
+                message: 'minimum 8 symbols, at least one letter, one digit, one special character',
+              },
+              minLength: {
+                value: 8,
+                message: 'min length is 8',
+              },
+            })}
+            type="password"
+            placeholder="Password"
+          />
+        </label>
+        {errors?.password?.message && (
+          <span className="field-error-text">{errors?.password?.message as string}</span>
+        )}
 
-      <button className="submitButton" type="submit">
-        Sign in
-      </button>
-      <p>
-        {'Are you new user? '}
-        <Link to="/register">Sign up</Link>
-      </p>
-    </form>
+        <button className="button" type="submit">
+          Sign in
+        </button>
+        <p>
+          {'Are you new user? '}
+          <Link to="/register">Sign up</Link>
+        </p>
+      </form>
+    </main>
   );
 };
 

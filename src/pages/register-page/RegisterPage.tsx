@@ -93,7 +93,7 @@ const LoginPage = () => {
         <span className="field-error-text">{errors?.password?.message as string}</span>
       )}
 
-      <button className="submitButton" type="submit">
+      <button className="button" type="submit">
         Sign up
       </button>
       <p>

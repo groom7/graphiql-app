@@ -4,14 +4,12 @@ import styles from './Page404.module.css';
 
 const Page404 = () => {
   return (
-    <main className={`${styles.page404}`}>
+    <main className={`${styles.page404} main`}>
       <p>Page not found</p>
-      <p>
-        {'Back to '}
-        <Link className={styles.link} to="/">
-          main page
-        </Link>
-      </p>
+      <p>Back to</p>
+      <Link className={`${styles.link} button`} to="/">
+        Main page
+      </Link>
     </main>
   );
 };
