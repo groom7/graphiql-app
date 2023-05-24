@@ -1,40 +1,71 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
-
-interface ISetLinkActiveStyleArg {
-  isActive: boolean;
-}
-type TSetLinkActiveStyle = (object: ISetLinkActiveStyleArg) => { [key: string]: string };
-const setLinkActiveStyle: TSetLinkActiveStyle = ({ isActive }) => ({
-  color: isActive ? '#fff' : '#000',
-  backgroundColor: isActive ? '#61892F' : '#86C232',
-});
+import useTokenExpiration from '../../hooks/useTokenExpiration';
+import { useAppDispatch } from '../../hooks/hooks';
+import { removeUser } from '../../services/slices/userDataSlice';
+import setLinkActiveStyle from '../../utils/setLinkActiveStyle';
 
 const AppHeader = () => {
+  let content;
+  const dispatch = useAppDispatch();
+  const isTokenExpired = useTokenExpiration();
+  const handleLogout = () => {
+    dispatch(removeUser());
+  };
+
+  if (isTokenExpired) {
+    content = (
+      <>
+        <li>
+          <NavLink
+            to="/login"
+            className={`${styles.navbarList__link} button`}
+            style={setLinkActiveStyle}
+          >
+            Sign in
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/register"
+            className={`${styles.navbarList__link} button`}
+            style={setLinkActiveStyle}
+          >
+            Sign up
+          </NavLink>
+        </li>
+      </>
+    );
+  } else {
+    content = (
+      <>
+        <li>
+          <NavLink
+            to="/"
+            className={`${styles.navbarList__link} button`}
+            style={setLinkActiveStyle}
+          >
+            Main page
+          </NavLink>
+        </li>
+        <li>
+          <button
+            className={`${styles.navbarList__link} button`}
+            onClick={handleLogout}
+            type="button"
+          >
+            Sign out
+          </button>
+        </li>
+      </>
+    );
+  }
+
   return (
     <header className={styles.header}>
       <nav>
-        <ul className={`${styles.navbarList}`}>
-          <li>
-            <NavLink
-              to="/login"
-              className={`${styles.navbarList__link} button`}
-              style={setLinkActiveStyle}
-            >
-              Sign in
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/register"
-              className={`${styles.navbarList__link} button`}
-              style={setLinkActiveStyle}
-            >
-              Sign up
-            </NavLink>
-          </li>
-        </ul>
+        <ul className={`${styles.navbarList}`}>{content}</ul>
       </nav>
     </header>
   );

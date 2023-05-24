@@ -1,0 +1,26 @@
+.welcomePageContainer {
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.graphiqlIconContainer {
+  transition: all 1s;
+}
+.graphiqlIconContainer:hover {
+  scale: 1.1;
+  cursor: pointer;
+}
+.graphiqlIcon {
+  animation: Spin 20s infinite linear;
+}
+.link {
+  max-width: 320px;
+}
+@keyframes Spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
