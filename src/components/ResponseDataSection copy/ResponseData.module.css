@@ -3,11 +3,10 @@
   overflow-y: auto;
   margin: 8px;
   padding: 8px;
-  border: 4px solid #646cff;
+  border: 4px solid #86C232;
   border-radius: 1rem;
 }
 .responseDataSection__responseDataArea {
-  height: 100%;
   font-size: 14px;
   background-color: transparent;
 }

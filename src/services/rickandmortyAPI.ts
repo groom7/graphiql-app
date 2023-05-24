@@ -18,29 +18,29 @@ export const rickandmortyAPI = createApi({
       }),
       transformResponse: ({ data }: { data: IntrospectionQuery }) => data,
     }),
-    // getGraphQLData: build.mutation({
-    //   query: (payload) => ({
-    //     url: '',
-    //     method: 'POST',
-    //     body: { query: payload },
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //   }),
-    //   transformResponse: ({ data }) => JSON.stringify(data, null, 2),
-    // }),
-    getGraphQLData: build.query({
+    getGraphQLData: build.mutation({
       query: (payload) => ({
         url: '',
         method: 'POST',
+        body: { query: payload },
         headers: {
           'Content-Type': 'application/json',
         },
-        body: { query: payload },
       }),
       transformResponse: ({ data }) => JSON.stringify(data, null, 2),
     }),
+    // getGraphQLData: build.query({
+    //   query: (payload) => ({
+    //     url: '',
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: { query: payload },
+    //   }),
+    //   transformResponse: ({ data }) => JSON.stringify(data, null, 2),
+    // }),
   }),
 });
 
-export const { useGetGraphQLIntrospectionQuery, useLazyGetGraphQLDataQuery } = rickandmortyAPI;
+export const { useGetGraphQLIntrospectionQuery, useGetGraphQLDataMutation } = rickandmortyAPI;
