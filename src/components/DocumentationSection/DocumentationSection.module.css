@@ -1,13 +1,7 @@
 .documentaionSection {
   max-height: 100vh;
-  display: none;
-  visibility: hidden;
   overflow-y: auto;
   padding: 16px;
-}
-.isVisible {
-  display: block;
-  visibility: visible;
 }
 .documentaionSection__textArea {
   background-color: transparent;

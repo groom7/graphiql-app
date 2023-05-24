@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
 import CodeEditor from '@uiw/react-textarea-code-editor';
 import { toast } from 'react-toastify';
-import {
-  useGetGraphQLDataMutation,
-  useGetGraphQLIntrospectionQuery,
-} from '../../services/rickandmortyAPI';
+import { useGetGraphQLIntrospectionQuery } from '../../services/rickandmortyAPI';
 import FullScreenLoader from '../FullScreenLoader';
 import introspectionToString from '../../utils/introspectionToString';
 import styles from './DocumentationSection.module.css';
@@ -19,9 +16,6 @@ const DocumentationSection = () => {
     error,
     isError,
   } = useGetGraphQLIntrospectionQuery();
-  const [, { isSuccess: isGraphQLDataRequestSucces }] = useGetGraphQLDataMutation({
-    fixedCacheKey: 'shared-graphQL-data',
-  });
 
   useEffect(() => {
     if (isError) {
@@ -55,13 +49,7 @@ const DocumentationSection = () => {
     );
   if (isLoading || isFetching) content = <FullScreenLoader />;
 
-  return (
-    <section
-      className={`${styles.documentaionSection} ${isGraphQLDataRequestSucces && styles.isVisible}`}
-    >
-      {content}
-    </section>
-  );
+  return <section className={styles.documentaionSection}>{content}</section>;
 };
 
 export default DocumentationSection;
