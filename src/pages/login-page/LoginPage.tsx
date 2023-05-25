@@ -49,11 +49,12 @@ const LoginPage = () => {
 
   return (
     <main className="main">
-      <form className="authForm" onSubmit={handleSubmit(onSubmit)}>
+      <form className="authForm" onSubmit={handleSubmit(onSubmit)} autoComplete="on">
         <h1>Sign in</h1>
         <label className="email" htmlFor="email">
           Email:
           <input
+            autoComplete="on"
             id="email"
             {...register('email', {
               required: 'Email address is required',
@@ -74,6 +75,7 @@ const LoginPage = () => {
         <label className="email" htmlFor="password">
           Password:
           <input
+            autoComplete="on"
             id="password"
             {...register('password', {
               required: 'Password is required',
