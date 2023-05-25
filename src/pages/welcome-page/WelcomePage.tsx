@@ -13,14 +13,14 @@ const WelcomePage = () => {
       <figure className={styles.graphiqlIconContainer}>
         <img className={styles.graphiqlIcon} src={graphiqlIcon} alt="graphiql icon" />
       </figure>
-      <h1>GraphQLefy it</h1>
+      <h1>GraphiQLefy it</h1>
       {isAuth ? (
         <Link className={`${styles.link} button`} to="/">
           Start
         </Link>
       ) : (
         <Link className={`${styles.link} button`} to="/login">
-          Login
+          Sign in
         </Link>
       )}
     </main>
