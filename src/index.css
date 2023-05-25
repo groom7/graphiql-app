@@ -4,11 +4,6 @@
   font-weight: 400;
   font-size: 14px;
 }
-#root {
-  display: flex;
-	flex-direction: column;
-  min-height: 100%;
-}
 *,
 *::before,
 *::after {
@@ -24,6 +19,16 @@ html {
 body {
   height: 100%;
   margin: 0;
+}
+@media screen and (max-width: 700px) {
+  body {
+    overflow-y: scroll;
+  }
+}
+#root {
+  min-height: 100vh;
+  display: flex;
+	flex-direction: column;
 }
 ::-webkit-scrollbar {
   width: 8px;
@@ -53,7 +58,6 @@ input:hover {
 }
 .main {
   display: flex;
-  height: 100%;
   flex: 1 0 auto;
   align-items: center;
 }
