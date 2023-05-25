@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { getAuth, signOut } from 'firebase/auth';
 import styles from './Header.module.css';
 import useTokenExpiration from '../../hooks/useTokenExpiration';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -13,7 +14,10 @@ const AppHeader = () => {
   const dispatch = useAppDispatch();
   const isTokenExpired = useTokenExpiration();
   const handleLogout = () => {
+    const auth = getAuth();
+
     dispatch(removeUser());
+    signOut(auth);
   };
   const { currentLanguage } = useAppSelector((state) => state.currentLanguage);
   const { t, i18n } = useTranslation();

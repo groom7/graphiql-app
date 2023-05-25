@@ -9,11 +9,12 @@ import { setUser } from '../../services/slices/userDataSlice';
 import { IUserWithAccessToken } from '../../utils/types/types';
 import { useAppDispatch } from '../../hooks/hooks';
 import useAuth from '../../hooks/useAuth';
+import FullScreenLoader from '../../components/FullScreenLoader';
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { isAuth } = useAuth();
+  const { isAuth, authWasListened } = useAuth();
   const { t } = useTranslation();
   const {
     register,
@@ -44,6 +45,8 @@ const LoginPage = () => {
       });
     reset();
   };
+
+  if (authWasListened) return <FullScreenLoader />;
 
   if (isAuth) {
     return <Navigate to="/" replace />;

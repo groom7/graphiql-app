@@ -10,12 +10,13 @@ import useAuth from '../../hooks/useAuth';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import useTokenExpiration from '../../hooks/useTokenExpiration';
 import { removeUser } from '../../services/slices/userDataSlice';
+import FullScreenLoader from '../../components/FullScreenLoader';
 
 const MainPage = () => {
   const [, { isSuccess: isGraphQLDataRequestSucces }] = useGetGraphQLDataMutation({
     fixedCacheKey: 'shared-graphQL-data',
   });
-  const { isAuth } = useAuth();
+  const { isAuth, authWasListened } = useAuth();
   const { token } = useAppSelector((state) => state.userData);
   const isTokenExpired = useTokenExpiration();
   const dispatch = useAppDispatch();
@@ -27,6 +28,8 @@ const MainPage = () => {
       navigate('/welcome');
     }
   }, [dispatch, isTokenExpired, navigate, token]);
+
+  if (authWasListened) return <FullScreenLoader />;
 
   return isAuth ? (
     <main className="main">
