@@ -46,7 +46,7 @@ const AppHeader = () => {
             className={`${styles.navbarList__link} button`}
             style={setLinkActiveStyle}
           >
-            Main page
+            Main
           </NavLink>
         </li>
         <li>
@@ -65,7 +65,18 @@ const AppHeader = () => {
   return (
     <header className={styles.header}>
       <nav>
-        <ul className={`${styles.navbarList}`}>{content}</ul>
+        <ul className={`${styles.navbarList}`}>
+          <li>
+            <NavLink
+              to="/welcome"
+              className={`${styles.navbarList__link} button`}
+              style={setLinkActiveStyle}
+            >
+              Welcome
+            </NavLink>
+          </li>
+          {content}
+        </ul>
       </nav>
     </header>
   );
