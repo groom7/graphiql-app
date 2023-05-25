@@ -27,19 +27,21 @@ const QueryEditorSection = () => {
   useEffect(() => {
     if (isError) {
       if (error instanceof Error) {
-        toast.error(error.message);
+        toast.error(error.message, { draggable: false });
       }
       if (error && 'data' in error) {
         const { data } = error as IResponseError;
 
         if (data && 'errors' in data) {
           if (Array.isArray((error as IResponseError)?.data?.errors)) {
-            (error as IResponseError)?.data?.errors?.forEach((item) => toast.error(item.message));
+            (error as IResponseError)?.data?.errors?.forEach((item) =>
+              toast.error(item.message, { draggable: false })
+            );
           } else {
             try {
-              toast.error(JSON.stringify(error));
+              toast.error(JSON.stringify(error), { draggable: false });
             } catch {
-              toast.error(String(error));
+              toast.error(String(error), { draggable: false });
             }
           }
         }

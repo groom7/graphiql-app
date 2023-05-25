@@ -34,14 +34,14 @@ const LoginPage = () => {
         const { accessToken } = user as IUserWithAccessToken;
 
         dispatch(setUser({ email: user.email, id: user.uid, token: accessToken }));
-        toast.success('Success sign in');
+        toast.success('Success sign in', { draggable: false });
         navigate('/', { replace: true });
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
 
-        toast.error(`${errorCode} ${errorMessage}`);
+        toast.error(`${errorCode} ${errorMessage}`, { draggable: false });
       });
     reset();
   };

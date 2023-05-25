@@ -22,12 +22,12 @@ const DocumentationSection = () => {
   useEffect(() => {
     if (isError) {
       if (error instanceof Error) {
-        toast.error(error.message);
+        toast.error(error.message, { draggable: false });
       } else {
         try {
-          toast.error(JSON.stringify(error));
+          toast.error(JSON.stringify(error), { draggable: false });
         } catch {
-          toast.error(String(error));
+          toast.error(String(error), { draggable: false });
         }
       }
     }
