@@ -41,7 +41,7 @@ const MainPage = () => {
       </div>
     </main>
   ) : (
-    <Navigate to="/login" replace />
+    <Navigate to="/welcome" replace />
   );
 };
 
