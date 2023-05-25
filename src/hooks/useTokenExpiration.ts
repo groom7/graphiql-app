@@ -1,5 +1,5 @@
 import jwt_decode from 'jwt-decode';
-import { IDecodeToken } from '../utils/types';
+import { IDecodeToken } from '../utils/types/types';
 import { useAppSelector } from './hooks';
 
 const useTokenExpiration = () => {

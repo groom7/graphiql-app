@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import CodeEditor from '@uiw/react-textarea-code-editor';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import { useGetGraphQLIntrospectionQuery } from '../../services/rickandmortyAPI';
 import FullScreenLoader from '../FullScreenLoader';
 import introspectionToString from '../../utils/introspectionToString';
@@ -16,6 +17,7 @@ const DocumentationSection = () => {
     error,
     isError,
   } = useGetGraphQLIntrospectionQuery();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (isError) {
@@ -36,7 +38,7 @@ const DocumentationSection = () => {
   if (isSuccess)
     content = (
       <>
-        <h2>Docs</h2>
+        <h2>{t('Docs')}</h2>
         <CodeEditor
           value={introspectionToString(graphQLIntrospection)}
           language="graphql"

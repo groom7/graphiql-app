@@ -3,9 +3,10 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import { emailPattern, passwordPattern } from '../../utils/constants';
 import { useAppDispatch } from '../../hooks/hooks';
-import { IUserWithAccessToken } from '../../utils/types';
+import { IUserWithAccessToken } from '../../utils/types/types';
 import { setUser } from '../../services/slices/userDataSlice';
 import useAuth from '../../hooks/useAuth';
 
@@ -13,6 +14,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { isAuth } = useAuth();
+  const { t } = useTranslation();
   const {
     register,
     formState: { errors },
@@ -49,20 +51,19 @@ const LoginPage = () => {
 
   return (
     <form className="authForm" onSubmit={handleSubmit(onSubmit)}>
-      <h1>Sign up</h1>
+      <h1>{t('Sign up')}</h1>
       <label className="email" htmlFor="email">
-        Email:
+        {t('Email')}:
         <input
           id="email"
           {...register('email', {
-            required: 'Email address is required',
+            required: `${t('Required error')}`,
             pattern: {
               value: emailPattern,
-              message:
-                'Entered value does not match email format, minimum 8 symbols, at least one letter, one digit, one special character',
+              message: `${t('Pattern error')}`,
             },
           })}
-          placeholder="Email"
+          placeholder={t('Email') || 'Email'}
           type="email"
         />
       </label>
@@ -71,22 +72,18 @@ const LoginPage = () => {
       )}
 
       <label className="email" htmlFor="password">
-        Password:
+        {t('Password')}:
         <input
           id="password"
           {...register('password', {
-            required: 'Password is required',
+            required: `${t('Required error')}`,
             pattern: {
               value: passwordPattern,
-              message: 'minimum 8 symbols, at least one letter, one digit, one special character',
-            },
-            minLength: {
-              value: 8,
-              message: 'min length is 8',
+              message: `${t('Pattern error')}`,
             },
           })}
           type="password"
-          placeholder="Password"
+          placeholder={t('Password') || 'Password'}
         />
       </label>
       {errors?.password?.message && (
@@ -94,11 +91,11 @@ const LoginPage = () => {
       )}
 
       <button className="button" type="submit">
-        Sign up
+        {t('Sign up')}
       </button>
       <p>
-        {'Already have an account? '}
-        <Link to="/login">Sign in</Link>
+        {t('Already have an account')}
+        <Link to="/login">{t('Sign in')}</Link>
       </p>
     </form>
   );

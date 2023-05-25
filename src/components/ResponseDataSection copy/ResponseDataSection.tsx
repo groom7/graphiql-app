@@ -1,5 +1,6 @@
 import React from 'react';
 import CodeEditor from '@uiw/react-textarea-code-editor';
+import { useTranslation } from 'react-i18next';
 import FullScreenLoader from '../FullScreenLoader';
 import styles from './ResponseData.module.css';
 import { useGetGraphQLDataMutation } from '../../services/rickandmortyAPI';
@@ -10,12 +11,13 @@ const ResponseDataSection = () => {
     useGetGraphQLDataMutation({
       fixedCacheKey: 'shared-graphQL-data',
     });
+  const { t } = useTranslation();
 
   if (!graphQLresponseData) {
     if (!isError) {
-      content = <p>Send query</p>;
+      content = <p>{t('Send query')}</p>;
     } else {
-      content = <p>There is an error with request</p>;
+      content = <p>{t('Request error')}</p>;
     }
   }
   if (isSuccess)

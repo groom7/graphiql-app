@@ -1,4 +1,4 @@
-import { TSetLinkActiveStyle } from './types';
+import { TSetLinkActiveStyle } from './types/types';
 
 const setLinkActiveStyle: TSetLinkActiveStyle = ({ isActive }) => ({
   color: isActive ? '#fff' : '#000',

@@ -1,0 +1,19 @@
+{
+  "Sign in": "Sign in",
+  "Sign up": "Sign up",
+  "Main": "Main",
+  "Sign out": "Sign out",
+  "Welcome": "Welcome",
+  "Email": "Email",
+  "Password": "Password",
+  "Are you new user": "Are you new user? ",
+  "Required error": "This field is required",
+  "Pattern error": "Minimum 8 symbols, at least one letter, one digit, one special character",
+  "Already have an account": "Already have an account? ",
+  "GraphiQLefy it": "GraphiQLefy it",
+  "Start": "Start",
+  "Docs": "Docs",
+  "Query": "Query",
+  "Send query": "Send query",
+  "Request error": "There is an error with request"
+}

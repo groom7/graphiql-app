@@ -1,10 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import styles from './Header.module.css';
 import useTokenExpiration from '../../hooks/useTokenExpiration';
-import { useAppDispatch } from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { removeUser } from '../../services/slices/userDataSlice';
 import setLinkActiveStyle from '../../utils/setLinkActiveStyle';
+import { setCurrentLanguage } from '../../services/slices/currentLanguageSlice';
 
 const AppHeader = () => {
   let content;
@@ -12,6 +14,12 @@ const AppHeader = () => {
   const isTokenExpired = useTokenExpiration();
   const handleLogout = () => {
     dispatch(removeUser());
+  };
+  const { currentLanguage } = useAppSelector((state) => state.currentLanguage);
+  const { t, i18n } = useTranslation();
+  const handleLanguageChange = (language: string) => {
+    i18n.changeLanguage(language);
+    dispatch(setCurrentLanguage(language));
   };
 
   if (isTokenExpired) {
@@ -23,7 +31,7 @@ const AppHeader = () => {
             className={`${styles.navbarList__link} button`}
             style={setLinkActiveStyle}
           >
-            Sign in
+            {t('Sign in')}
           </NavLink>
         </li>
         <li>
@@ -32,7 +40,7 @@ const AppHeader = () => {
             className={`${styles.navbarList__link} button`}
             style={setLinkActiveStyle}
           >
-            Sign up
+            {t('Sign up')}
           </NavLink>
         </li>
       </>
@@ -46,7 +54,7 @@ const AppHeader = () => {
             className={`${styles.navbarList__link} button`}
             style={setLinkActiveStyle}
           >
-            Main
+            {t('Main')}
           </NavLink>
         </li>
         <li>
@@ -55,7 +63,7 @@ const AppHeader = () => {
             onClick={handleLogout}
             type="button"
           >
-            Sign out
+            {t('Sign out')}
           </button>
         </li>
       </>
@@ -67,12 +75,32 @@ const AppHeader = () => {
       <nav>
         <ul className={`${styles.navbarList}`}>
           <li>
+            <button
+              className={`${styles.navbarList__link} button`}
+              onClick={() => handleLanguageChange('en')}
+              style={setLinkActiveStyle({ isActive: currentLanguage === 'en' })}
+              type="button"
+            >
+              En
+            </button>
+          </li>
+          <li>
+            <button
+              className={`${styles.navbarList__link} button`}
+              onClick={() => handleLanguageChange('ru')}
+              style={setLinkActiveStyle({ isActive: currentLanguage === 'ru' })}
+              type="button"
+            >
+              Ru
+            </button>
+          </li>
+          <li>
             <NavLink
               to="/welcome"
               className={`${styles.navbarList__link} button`}
               style={setLinkActiveStyle}
             >
-              Welcome
+              {t('Welcome')}
             </NavLink>
           </li>
           {content}

@@ -43,12 +43,17 @@ body {
   background-color: #222629;
 }
 input {
-  min-width: 320px;
+  width: 320px;
   height: 45px;
   padding: 0 10px;
   font-size: 14px;
   border: 1px solid #86C232;
   border-radius: 1rem;
+}
+@media screen and (max-width: 380px) {
+  input {
+    width: 300px;
+  }
 }
 input::-webkit-input-placeholder {
   font-size: 14px;
@@ -78,6 +83,12 @@ input:hover {
   background-color: #61892F;
   color: #ffffff;
 }
+@media screen and (max-width: 480px) {
+  .button {
+    padding: 0.4em 0.6em;
+    font-weight: 300;
+  }
+}
 .authForm {
   max-width: 320px;
   height: 100%;
@@ -88,10 +99,18 @@ input:hover {
   align-items: center;
   margin: auto;
 }
+@media screen and (max-width: 380px) {
+  .authForm {
+    max-width: 300px;
+  }
+}
 a {
-  color: inherit;
+  color: #61892F;
   text-decoration: none;
   transition: all 0.25s;
+}
+a:hover {
+  color: #86C232;
 }
 ul {
   list-style-type: none;

@@ -11,9 +11,14 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  gap: 8px;
+  gap: 4px;
   align-items: center;
   list-style-type: none;
+}
+@media screen and (max-width: 480px) {
+  .navbarList {
+    flex-wrap: wrap;
+  }
 }
 .navbarList__link {
   display: flex;

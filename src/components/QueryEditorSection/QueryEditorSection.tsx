@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import CodeEditor from '@uiw/react-textarea-code-editor';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import styles from './QueryEditorSection.module.css';
 import { useGetGraphQLDataMutation } from '../../services/rickandmortyAPI';
-import { IResponseError } from '../../utils/types';
+import { IResponseError } from '../../utils/types/types';
 
 const queryEditorInitialValue = `{
   characters {
@@ -17,6 +18,7 @@ const QueryEditorSection = () => {
   const [getGraphqlData, { isLoading, isError, error }] = useGetGraphQLDataMutation({
     fixedCacheKey: 'shared-graphQL-data',
   });
+  const { t } = useTranslation();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     getGraphqlData(queryEditorValue);
@@ -50,7 +52,7 @@ const QueryEditorSection = () => {
     <section className={styles.queryEditorSection}>
       <form className={styles.queryEditorSection__form} onSubmit={(event) => handleSubmit(event)}>
         <button className="button" type="submit">
-          Query
+          {t('Query')}
         </button>
         <CodeEditor
           value={queryEditorValue}
