@@ -1,0 +1,37 @@
+.welcomePageContainer {
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+.graphiqlIconContainer {
+  transition: all 1s;
+}
+.graphiqlIconContainer:hover {
+  scale: 1.1;
+}
+.graphiqlIcon {
+  animation: Spin 20s infinite linear;
+}
+.link {
+  max-width: 320px;
+}
+@keyframes Spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@media screen and (max-width: 380px) {
+  .welcomePageContainer {
+    width: 200px;
+  }
+  .graphiqlIcon {
+    width: 200px;
+  }
+  .link {
+    max-width: 300px;
+  }
+}

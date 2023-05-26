@@ -1,0 +1,55 @@
+import React, { useEffect } from 'react';
+import CodeEditor from '@uiw/react-textarea-code-editor';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
+import { useGetGraphQLIntrospectionQuery } from '../../services/rickandmortyAPI';
+import FullScreenLoader from '../FullScreenLoader';
+import introspectionToString from '../../utils/introspectionToString';
+import styles from './DocumentationSection.module.css';
+
+const DocumentationSection = () => {
+  let content;
+  const {
+    data: graphQLIntrospection,
+    isLoading,
+    isFetching,
+    isSuccess,
+    error,
+    isError,
+  } = useGetGraphQLIntrospectionQuery();
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    if (isError) {
+      if (error instanceof Error) {
+        toast.error(error.message, { draggable: false });
+      } else {
+        try {
+          toast.error(JSON.stringify(error), { draggable: false });
+        } catch {
+          toast.error(String(error), { draggable: false });
+        }
+      }
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading]);
+
+  if (isSuccess)
+    content = (
+      <>
+        <h2>{t('Docs')}</h2>
+        <CodeEditor
+          value={introspectionToString(graphQLIntrospection)}
+          language="graphql"
+          readOnly
+          className={styles.documentaionSection__textArea}
+        />
+      </>
+    );
+  if (isLoading || isFetching) content = <FullScreenLoader />;
+
+  return <section className={styles.documentaionSection}>{content}</section>;
+};
+
+export default DocumentationSection;

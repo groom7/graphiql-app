@@ -1,0 +1,35 @@
+.footer {
+  width: 100%;
+  display: flex;
+  flex: 0 0 auto;
+  display: flex;
+  color: #fff;
+  background-color: #1C1C21;
+  padding: 8px;
+}
+.navbar {
+  width: 100vw;
+}
+.navbarList {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 8px;
+  align-items: center;
+  list-style-type: none;
+}
+.navbarList__link {
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.githubBlock {
+  width: 30px;
+}
+.rssBlock {
+  width: 90px;
+}
+.githubBlock__logo {
+  width: 24px;
+}

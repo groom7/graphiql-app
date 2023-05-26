@@ -1,0 +1,8 @@
+.page404 {
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.link {
+  max-width: 320px;
+}
