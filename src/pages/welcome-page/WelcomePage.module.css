@@ -2,6 +2,7 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  margin: 0 auto;
 }
 .graphiqlIconContainer {
   transition: all 1s;
@@ -21,5 +22,16 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+@media screen and (max-width: 380px) {
+  .welcomePageContainer {
+    width: 200px;
+  }
+  .graphiqlIcon {
+    width: 200px;
+  }
+  .link {
+    max-width: 300px;
   }
 }
